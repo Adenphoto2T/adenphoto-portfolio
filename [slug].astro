@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import {projects} from '../../data/site.js';
+export function getStaticPaths(){return projects.map(project=>({params:{slug:project.slug},props:{project}}));}
+const {project} = Astro.props;
+const base = `${import.meta.env.BASE_URL.replace(/\/?$/, '')}/`;
+const image=project.image.startsWith('/')?`${base}${project.image.slice(1)}`:project.image;
+---
+<Base title={`${project.title} | Adenphoto — 2T Studio Lab`} description={project.description}>
+  <article class="mx-auto max-w-7xl px-6 pb-24 pt-40 md:px-10 md:pt-52">
+    <a class="eyebrow text-gold hover:text-white" href={`${base}#du-an`}>← Quay lại dự án</a>
+    <p class="eyebrow mb-5 mt-16 text-gold">{project.category} / {project.year}</p>
+    <h1 class="display mb-12 text-6xl md:text-9xl">{project.title}</h1>
+    <div class="photo-wrap aspect-[4/3] md:aspect-[16/9]"><img src={image} class="photo" alt={`${project.title} — ảnh minh họa`} /></div>
+    <div class="mt-12 grid gap-8 border-t border-white/70 pt-10 md:grid-cols-2"><h2 class="display text-4xl md:text-6xl">Về dự án</h2><div><p class="text-sm leading-8 text-white/70">{project.description}</p><p class="mt-6 text-sm leading-8 text-white/50">Đây là trang dự án mẫu. Hãy thay nội dung bằng brief, ý tưởng, quy trình thực hiện, bộ ảnh thực tế và kết quả của dự án.</p></div></div>
+  </article>
+</Base>

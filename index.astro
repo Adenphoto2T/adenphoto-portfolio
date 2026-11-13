@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import {projects, services} from '../data/site.js';
+const base = `${import.meta.env.BASE_URL.replace(/\/?$/, '')}/`;
+const asset = (path) => path.startsWith('/') ? `${base}${path.slice(1)}` : path;
+const hero = 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=2000&q=85';
+---
+<Base>
+  <section class="relative flex min-h-[92svh] items-end overflow-hidden bg-neutral-900 px-6 pb-16 pt-40 md:px-10 md:pb-24">
+    <img src={hero} alt="Máy ảnh trong không gian ánh sáng điện ảnh — ảnh minh họa" class="absolute inset-0 h-full w-full object-cover opacity-55" fetchpriority="high" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/35"></div>
+    <div class="relative z-10 mx-auto w-full max-w-7xl reveal">
+      <p class="eyebrow mb-6 text-gold">Independent photographer & creative studio / Vietnam</p>
+      <h1 class="display max-w-5xl text-[clamp(4rem,11vw,10rem)] leading-[.84] tracking-[-.045em]">Không chỉ là<br/><em class="font-normal">một khung hình.</em></h1>
+      <div class="mt-10 flex flex-col justify-between gap-8 border-t border-white/40 pt-6 md:flex-row md:items-end">
+        <p class="max-w-lg text-sm leading-8 text-white/80 md:text-base">Chúng tôi kể câu chuyện thương hiệu bằng hình ảnh, ý tưởng và chiến lược sáng tạo.</p>
+        <a href="#du-an" class="eyebrow outline-cta">Khám phá dự án <span class="text-2xl">↘</span></a>
+      </div>
+    </div>
+  </section>
+  <section id="du-an" class="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-36">
+    <div class="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p class="eyebrow mb-5 text-gold">01 / Selected Works</p><h2 class="display text-6xl md:text-8xl">Những câu chuyện<br/><em>qua hình ảnh.</em></h2></div><p class="max-w-xs text-sm leading-7 text-white/60">Tuyển chọn các lĩnh vực sáng tạo từ nhiếp ảnh đến nội dung thương hiệu.</p></div>
+    <div class="grid gap-x-8 gap-y-14 md:grid-cols-2">
+      {projects.map((p,i)=><a href={`${base}du-an/${p.slug}/`} class:list={['group block',i%2===1?'md:mt-24':'']}>
+        <div class:list={['photo-wrap',p.size==='tall'?'aspect-[4/5]':'aspect-[5/4]']}><img class="photo" src={asset(p.image)} alt={`${p.title} — ảnh minh họa`} loading="lazy" /></div>
+        <div class="mt-5 flex items-start justify-between gap-4"><div><p class="eyebrow mb-2 text-gold">{p.category}</p><h3 class="display text-3xl md:text-4xl">{p.title}</h3></div><span class="text-xl transition-transform group-hover:translate-x-1">↗</span></div>
+      </a>)}
+    </div>
+    <p class="mt-12 text-xs text-white/40">* Hình ảnh và dự án hiện tại là nội dung minh họa, cần thay bằng tác phẩm thực tế trước khi công bố.</p>
+  </section>
+  <section id="dich-vu" class="bg-[#080808] px-6 py-24 text-white md:px-10 md:py-32"><div class="mx-auto max-w-7xl"><p class="eyebrow mb-6 text-gold">02 / What We Do</p><div class="mb-16 flex flex-col justify-between gap-8 md:flex-row"><h2 class="display text-6xl leading-none md:text-8xl">Hình ảnh đẹp.<br/><em>Ý tưởng có chiều sâu.</em></h2><p class="max-w-xs self-end text-sm leading-7 text-white/70">Một đối tác sáng tạo linh hoạt — từ khung hình đầu tiên đến thông điệp cuối cùng.</p></div>
+    <div>{services.map(s=><div class="grid gap-4 border-t border-white/60 py-8 md:grid-cols-[70px_1fr_1fr] md:items-center"><span class="eyebrow text-gold">{s.number}</span><h3 class="display text-4xl md:text-5xl">{s.title}</h3><p class="max-w-md text-sm leading-7 text-white/70">{s.detail}</p></div>)}</div></div></section>
+  <section id="ve-chung-toi" class="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:grid-cols-2 md:items-center md:gap-20 md:px-10 md:py-36"><div class="photo-wrap aspect-[4/5]"><img class="photo" src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1200&q=85" alt="Nhiếp ảnh gia đang làm việc — ảnh minh họa" loading="lazy" /></div><div><p class="eyebrow mb-6 text-gold">03 / The Studio</p><h2 class="display mb-8 text-6xl leading-[.95] md:text-8xl">Một góc nhìn.<br/><em>Nhiều khả năng.</em></h2><p class="mb-5 text-sm leading-8 text-white/70">Adenphoto — 2T Studio Lab là không gian kết nối niềm đam mê nhiếp ảnh với tư duy marketing và sản xuất nội dung sáng tạo.</p><p class="text-sm leading-8 text-white/70">Chúng tôi tin rằng hình ảnh tốt không chỉ đẹp về thẩm mỹ, mà còn phải truyền tải đúng câu chuyện và giá trị của thương hiệu.</p></div></section>
+  <section id="lien-he" class="border-t border-white/20 px-6 py-24 md:px-10 md:py-32"><div class="mx-auto max-w-7xl"><p class="eyebrow mb-8 text-gold">04 / Start a Conversation</p><h2 class="display max-w-5xl text-6xl leading-[.95] md:text-[clamp(6rem,12vw,11rem)]">Cùng tạo nên<br/><em>điều khác biệt.</em></h2><div class="mt-14 flex flex-wrap items-center justify-between gap-8 border-t border-white/30 pt-7"><p class="max-w-sm text-sm leading-7 text-white/60">Bạn có một dự án, một ý tưởng hay một câu chuyện cần được kể? Hãy bắt đầu cuộc trò chuyện.</p><a href="mailto:hello@example.com?subject=Hop%20tac%20cung%20Adenphoto" class="eyebrow outline-cta">Gửi lời mời hợp tác ↗</a></div><p class="mt-5 text-xs text-white/40">Thay hello@example.com bằng email thực tế trước khi xuất bản.</p></div></section>
+</Base>

@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@theme {
+  --color-ink: #080808;
+  --color-ivory: #f1eee7;
+  --color-gold: #ff7417;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Manrope", Arial, sans-serif;
+}
+:root { scroll-behavior: smooth; }
+body { margin:0; background:#080808; color:#ffffff; font-family:var(--font-sans); }
+::selection { background:#ff7417; color:#080808; }
+.display { font-family:var(--font-display); font-weight:400; }
+.eyebrow { text-transform:uppercase; letter-spacing:.22em; font-size:.67rem; font-weight:700; }
+.photo { width:100%; height:100%; object-fit:cover; filter:saturate(.75); transition:transform .8s ease, filter .8s ease; }
+.photo-wrap { overflow:hidden; background:#171717; border:1px solid #fff; }
+.photo-wrap:hover .photo { transform:scale(1.035); filter:saturate(1); }
+.rule { border-top:1px solid rgba(255,255,255,.65); }
+.reveal { animation:appear .9s both; }
+@keyframes appear { from {opacity:0; transform:translateY(18px)} to {opacity:1; transform:translateY(0)} }
+@media(prefers-reduced-motion:reduce){ *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important} }
+
+/* Adenphoto Fire Orange / White Outline visual system */
+h1,h2,h3,.section-heading { color:#ff7417; }
+.display em { color:#ff7417; }
+.photo-wrap { border:1px solid #fff; }
+a:focus-visible,button:focus-visible { outline:2px solid #ff7417; outline-offset:4px; }
+.outline-cta { display:inline-flex; align-items:center; justify-content:center; gap:1rem; border:1px solid #fff; color:#ff7417; padding:.95rem 1.35rem; text-decoration:none; transition:background .2s,color .2s; }
+.outline-cta:hover { background:#ff7417; color:#080808; border-color:#fff; }
